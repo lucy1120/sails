@@ -1,0 +1,61 @@
+main{
+    background-color: #efefef;
+    padding: 30px 0;
+    .list1{
+        h3{
+            font-size: 20px;
+        }
+        ul li{
+            line-height: 35px;
+            text-align: center;
+            margin-right: 40px;
+            a{
+                font-size: 16px;
+            }
+        }
+    }
+    .list2{
+        h3{
+            font-size: 20px;
+        }   
+        ol{
+            margin-top: -20px;
+            background-color: transparent;
+            color: white;
+            li.active{
+                color: white;
+            }
+            a{
+                color: white;
+            }
+        }
+    }
+    .list3{
+        h4{
+            margin-top: 0;
+            /*这里要显示的设置宽度*/
+            overflow:hidden;
+            white-space:nowrap;
+            width: 100%;
+            /*文字超出宽度则显示ellipsis省略号*/
+            text-overflow:ellipsis;
+            span{
+                color: #666;
+            }
+        }
+        div{
+            text-indent: 2em;
+            //文字右侧对齐，不会因为首行缩进不对齐
+            text-align:justify;
+            text-justify:inter-ideograph;
+        }
+    }
+    .list4{
+        border-bottom: 1px dashed #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+}

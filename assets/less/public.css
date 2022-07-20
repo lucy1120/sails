@@ -1,0 +1,102 @@
+body {
+  padding-top: 50px;
+}
+header .st1 {
+  background-color: #012269;
+}
+header .st0 {
+  height: 157px;
+  background: url('../images/head-bg_02.jpg') no-repeat center center;
+}
+header .st2 {
+  height: 110px;
+}
+header .st4 {
+  background-color: rgba(255, 255, 255, 0.532);
+  height: 46px;
+  position: relative;
+}
+header .st4 > div {
+  display: flex;
+  justify-content: space-between;
+}
+header .st4 > div dl {
+  flex: 1;
+}
+header .st4 > div dl:hover dd {
+  display: block;
+}
+header .st4 > div dl dt {
+  color: black;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 46px;
+  text-align: center;
+}
+header .st4 > div dl dt:hover {
+  background-color: #7e0001;
+  color: white;
+  cursor: pointer;
+}
+header .st4 > div dl dd {
+  position: absolute;
+  padding: 5px;
+  line-height: 25px;
+  display: none;
+  left: 0;
+  top: 47px;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+header .st4 > div dl dd a {
+  display: block;
+  line-height: 2.5;
+  color: black;
+}
+footer {
+  background-color: #7e0001;
+  height: 240px;
+}
+footer div.container {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+footer div.container .st5 p:last-child a {
+  color: white;
+  display: block;
+  line-height: 1.8;
+}
+footer div.container .st5 p:last-child a:first-child {
+  background: url('../images/beian.png') no-repeat left center;
+  padding-left: 30px;
+}
+footer div.container .st6 {
+  color: white;
+  line-height: 2.2;
+}
+footer div.container .st6 p:first-child {
+  border-bottom: 1px solid white;
+}
+footer div.container .st6 p:first-child::before {
+  content: '';
+  position: absolute;
+  width: 30%;
+  height: 1px;
+  background-color: white;
+  margin-top: 30px;
+}
+footer div.container .st6 a {
+  display: block;
+  color: white;
+  text-decoration: none;
+}
+footer div.container .st6 a:hover {
+  color: #000000;
+}
+footer > p {
+  text-align: center;
+  background-color: #041438;
+  line-height: 40px;
+  color: #999;
+}

@@ -1,0 +1,111 @@
+body{
+    padding-top: 50px;
+}
+header{
+    .st1{
+        background-color: #012269;
+    }
+    .st0{
+        height: 157px;
+        background: url('../images/head-bg_02.jpg') no-repeat center center;
+    } 
+    .st2{
+        height: 110px;  
+    }
+    .st4{
+        background-color: rgba(255, 255, 255, 0.532);
+        height: 46px;
+        position: relative;
+        >div{
+            
+            display: flex;//不加大于号的，后续所有的div都会变成flex
+            justify-content: space-between;
+            dl{
+                flex:1;//中间不会留白，每个dt hover上去后不会很窄
+                &:hover dd{
+                    display: block;
+                }
+                dt{
+                    color: black;
+                    font-size:15px;
+                    font-weight: 400;
+                    line-height: 46px;//与板块的高度相同保证文字纵向居中
+                    text-align: center;
+                    &:hover{
+                        background-color: #7e0001;
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+                dd{
+                    position: absolute;
+                    padding: 5px;
+                    line-height: 25px;
+                    display: none; 
+                    left: 0;
+                    top: 47px;
+                    width: 100%;
+                    z-index: 10;
+                    background-color: rgba(255, 255, 255, 0.8);
+                    a{
+                        display: block;
+                        line-height: 2.5;
+                        color: black;
+                    }
+                }
+            }
+        }    
+    }
+}
+footer{
+    background-color: #7e0001;
+    height: 240px;
+    // box-sizing: border-box;
+    div.container{
+        padding-top: 30px;
+        padding-bottom: 20px;
+        .st5{
+            p:last-child{
+                a{
+                    color: white;
+                    display: block;
+                    line-height: 1.8;
+                    &:first-child{
+                        background: url('../images/beian.png') no-repeat left center;
+                        padding-left: 30px;
+                    }
+                }
+            }
+        }
+        .st6{
+            color: white;
+            line-height: 2.2;
+            p:first-child{
+                border-bottom: 1px solid white;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    width: 30%;
+                    height: 1px;
+                    background-color: white;
+                    margin-top: 30px;
+                }
+            }
+            a{
+                display: block;
+                color: white;
+                text-decoration: none;
+                &:hover{
+                    color: rgb(0, 0, 0);
+                }
+            }
+        }
+    }
+    >p{
+        text-align: center;
+        background-color: #041438;
+        line-height: 40px;
+        color: #999;
+    }
+}
+

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/less/manager.css">
+    <style>
+        html,body{
+            height: 100%;       
+        }
+        .public_h{
+            height: 100%;
+        }
+        .left1,.right1{
+            /* 溢出隐藏需要设置固定高度 纵向隐藏*/
+            overflow-y: scroll;
+            height: calc(100% - 48px);
+        }
+        .left1 a{
+            display: block;
+            padding-right: 15px;
+            line-height: 3;
+        }
+        body{
+            padding: 70px 0 30px;
+        }
+        p{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <nav class="navbar navbar-fixed-top st1" role="navigation" style="background-color: #7e0001;">
+        <div class="container">
+                <!-- 这个元素在移动设备中将被折叠起来 -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <ul class="pull-right" style="z-index: 100;list-style: none;">
+                          <li><a href="##" style="color: #fff;">欢迎您:<%- nickname %></a></li>
+                          <li><a href="##" id="logout" style="color: #fff;">注销</a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </nav>  
+    </header>
+    <main class="container-fluid public_h">
+        <!-- 占3份 一行只有12份-->
+        <div class="row public_h">
+            <div class="col-md-2 public_h">
+                <div class="panel panel-primary public_h">
+                    <div class="panel-heading text-center" style="padding-right: 20px;">
+                        <span class="h3">功能导航</span>
+                    </div>
+                    <!-- 文本居中 text-center -->
+                    <div class="panel-body left1 text-center">
+                        <!--<a href="#one">添加文件</a>-->
+                        <a href="#two">添加其它要闻</a>
+                        <a href="#three">添加师大要闻</a>
+                        <a href="#four">添加教学科研</a>
+                        <a href="#five">添加轮播图</a>
+                        <a href="#six" onclick="delCar()">删除轮播图</a>
+                        <a href="#seven">轮播图数据修改</a>
+                        <a href="#eight">修改密码</a>
+                        <a href="#nine">修改用户信息</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 public_h" style="overflow: hidden;">
+                <!-- <div class="panel panel-primary public_h" id="one">
+                    <div class="panel-heading">
+                        <span class="h3">添加文件</span>
+                    </div> -->
+                    <!-- 文本居中 text-center -->
+                    <!-- <div class="panel-body right1">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group has-feedback">
+                                <label class="col-sm-2 control-label" for="exampleInputEmail1">图片：</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="myfile" class="form-control" id="exampleInputEmail1" placeholder="">
+                                    <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-default">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+                <div class="panel panel-primary public_h" id="two">
+                    <div class="panel-heading">
+                        <span class="h3">添加通知</span>
+                    </div>
+                    <div class="panel-body right1">
+                        <form class="form-horizontal" role="form" style="padding-right:150px">
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">标题:</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" placeholder="请输入通知标题" name="title">
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">来源:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="source">
+                                        <option value="人事部">人事部</option>
+                                        <option value="教学部">教学部</option>
+                                        <option value="总务部">总务部</option>
+                                        <option value="办公室">办公室</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">内容:</label>
+                                <div class="col-sm-10">
+                                    <textarea placeholder="请输入通知内容" name="content" rows="18" cols="125"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-4">
+                                    <button class="btn btn-primary" type="submit">提交</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-default" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>标题</th>
+                                    <th>来源</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-primary public_h" id="three">
+                    <div class="panel-heading">
+                      <span class="h3">添加文章</span>
+                    </div>
+                    <div class="panel-body right1">
+                      <form class="form-horizontal image" role="form">
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">图片</label>
+                          <div class="col-sm-10">
+                            <input type="file" name="image" class="form-control">
+                          </div>
+                        </div>
+          
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-2">
+                            <button type="submit" class="btn btn-primary col-sm-offset-2">提交图片</button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="reset" class="btn btn-default">重置</button>
+                          </div>
+                        </div>
+                      </form>
+                      <form class="form-horizontal html" role="form">
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">标题</label>
+                          <div class="col-sm-10">
+                            <input name="title" class="form-control" placeholder="请输入文章" id="inputEmail3">
+                          </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">来源:</label>
+                          <div class="col-sm-10">
+                            <select class="form-control" name="source">
+                              <option value="人事部">人事部</option>
+                              <option value="教学部">教学部</option>
+                              <option value="总务部">总务部</option>
+                              <option value="办公室">办公室</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">内容:</label>
+                          <div class="col-sm-10">
+                            <textarea name="content" rows="10" cols="120" placeholder="请输入文章内容">
+                            <p></p>
+                            </textarea>
+                          </div>
+                        </div>
+                        <!-- 一旦碰到图片数据，图片后面的文本就无法提交了 -->
+                        <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">缩略图</label>
+                            <div class="col-sm-10">
+                              <input type="file" name="small" class="form-control">
+                            </div>
+                          </div>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-2">
+                            <button type="submit" class="btn btn-primary col-sm-offset-2">提交</button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="reset" class="btn btn-default">重置</button>
+                          </div>
+                        </div>
+                      </form>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>标题</th>
+                            <th>来源</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+          
+                    </div>
+                </div>
+                <div class="panel panel-primary public_h" id="four">
+                    <div class="panel-heading">
+                      <span class="h3">添加热点聚焦</span>
+                    </div>
+                    <div class="panel-body right1">
+                      <form class="form-horizontal html" role="form">
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">标题</label>
+                          <div class="col-sm-10">
+                            <input name="title" class="form-control" placeholder="请输入文章" id="inputEmail3">
+                          </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">来源:</label>
+                          <div class="col-sm-10">
+                            <select class="form-control" name="source">
+                              <option value="人事部">人事部</option>
+                              <option value="教学部">教学部</option>
+                              <option value="总务部">总务部</option>
+                              <option value="办公室">办公室</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">内容1:</label>
+                          <div class="col-sm-10">
+                            <textarea name="content1" 
+                                    rows="8" 
+                                    cols="120" 
+                                    placeholder="请输入内容1">
+                            </textarea>
+                          </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">内容2:</label>
+                            <div class="col-sm-10">
+                              <textarea name="content2" 
+                                      rows="8" 
+                                      cols="120" 
+                                      placeholder="请输入内容2">
+                              </textarea>
+                            </div>
+                          </div>
+                        <!-- 一旦碰到图片数据，图片后面的文本就无法提交了 所以文本要放在图片之前-->
+                        <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">图片：</label>
+                            <div class="col-sm-10">
+                              <input type="file" name="imgFile" class="form-control">
+                            </div>
+                          </div>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-2">
+                            <button type="submit" class="btn btn-primary col-sm-offset-2">提交</button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="reset" class="btn btn-default">重置</button>
+                          </div>
+                        </div>
+                      </form>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>标题</th>
+                            <th>来源</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+          
+                    </div>
+                </div>
+                <div class="panel panel-primary public_h" id="five">
+                    <div class="panel-heading">
+                      <span class="h3">添加轮播图</span>
+                    </div>
+                    <div class="panel-body right1">
+                      <form class="form-horizontal html" role="form">
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">标题</label>
+                          <div class="col-sm-10">
+                            <input name="title" class="form-control" placeholder="请输入文章" id="inputEmail3">
+                          </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">来源:</label>
+                          <div class="col-sm-10">
+                            <select class="form-control" name="source">
+                              <option value="人事部">人事部</option>
+                              <option value="教学部">教学部</option>
+                              <option value="总务部">总务部</option>
+                              <option value="办公室">办公室</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">内容:</label>
+                          <div class="col-sm-10">
+                            <textarea name="content" 
+                                    rows="8" 
+                                    cols="120" 
+                                    placeholder="请输入内容">
+                            </textarea>
+                          </div>
+                        </div>
+                        <!-- 一旦碰到图片数据，图片后面的文本就无法提交了 所以文本要放在图片之前-->
+                        <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">图片：</label>
+                            <div class="col-sm-10">
+                              <input type="file" name="imgFile" class="form-control">
+                            </div>
+                          </div>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-2">
+                            <button type="submit" class="btn btn-primary col-sm-offset-2">提交</button>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="reset" class="btn btn-default">重置</button>
+                          </div>
+                        </div>
+                      </form>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>标题</th>
+                            <th>来源</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+          
+                    </div>
+                </div>
+                <div class="panel panel-primary public_h" id="six">
+                    <div class="panel-heading">
+                      <span class="h3">删除轮播图</span>
+                    </div>
+                    <div class="panel-body right1 text-center">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>标题</th>
+                            <th>来源</th>
+                            <th>日期</th>
+                            <th>操作</th>
+                          </tr>
+                        </thead>
+                        <tbody id="delCar">
+                        </tbody>
+                      </table>
+                      <ul class="pagination pagination-lg" id="sixUl">
+                        
+                      </ul>
+                    </div>
+                </div>
+                <div class="panel panel-primary public_h" id="seven">
+                  <div class="panel-heading">
+                      <span class="h3">轮播图数据修改</span>
+                  </div>
+                  <div class="panel-body right1" text-center>
+                      <form class="form-horizontal title" role="form">
+                          <div class="form-group has-feedback">
+                              <label class="col-sm-2 control-label">查询标题:</label>
+                              <div class="col-sm-10">
+                                  <input type="text" name="keyword" class="form-control keyword">
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-2">
+                                  <button type="submit" class="btn btn-primary col-sm-offset-2">查询<tton>
+                              </div>
+                              <div class="col-sm-4">
+                                  <button type="reset" class="btn btn-default">重置<tton>
+                              </div>
+                          </div>
+                      </form>
+                      <hr\>
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th>标题</th>
+                                  <th>来源</th>
+                                  <th>日期</th>
+                                  <th>操作</th>
+                              </tr>
+                          </thead>
+                          <tbody id="ChangeCar">
+                          </tbody>
+                      </table>
+                      <hr\>
+                      <form class="form-horizontal edit" role="form">
+                          <div class="form-group has-feedback">
+                              <label class="col-sm-2 control-label">标题</label>
+                              <div class="col-sm-10">
+                                  <input name="title" class="form-control title" placeholder="请输入轮播图标题" id="">
+                                  <input type="text" hidden name="id" class="id">
+                              </div>
+                          </div>
+                          <div class="form-group has-feedback">
+                              <label class="col-sm-2 control-label">来源</label>
+                              <div class="col-sm-10">
+                                  <select class="form-control select" name="source">
+                                      <option value="人事部">人事部</option>
+                                      <option value="教学部">教学部</option>
+                                      <option value="总务部">总务部</option>
+                                      <option value="办公室" selected>办公室</option>
+                                  <lect>
+                              </div>
+                          </div>
+                          <div class="form-group has-feedback">
+                              <label class="col-sm-2 control-label">内容</label>
+                              <div class="col-sm-10">
+                                  <textarea name="content" class="content" rows="12" cols="120" placeholder="请输入文章内容">
+                      
+                      </textarea>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-2">
+                                  <button type="submit" class="btn btn-primary col-sm-offset-2">修改<tton>
+                              </div>
+                              <div class="col-sm-4">
+                                  <button type="reset" class="btn btn-default">重置<tton>
+                              </div>
+                          </div>
+                      </form>
+                     
+                  </div>
+                </div>
+                <div class="panel panel-primary public_h" id="eight">
+                  <div class="panel-heading">
+                      <span class="h3">修改密码</span>
+                  </div>
+                  <div class="panel-body right1" text-center>
+                      <form class="form-horizontal edit" role="form">
+                          <div class="form-group has-feedback">
+                              <label class="col-sm-2 control-label">原密码:</label>
+                              <div class="col-sm-10">
+                                  <input class="form-control" name="oldPwd" type="password">
+                                  <input type="hidden" value="<%- id  %>" name="id">
+                              </div>
+                          </div>
+                          <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">新密码:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control newPwd" type="password" name="newPwd">
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label class="col-sm-2 control-label">确认新密码:</label>
+                          <div class="col-sm-10">
+                              <input class="form-control reNewPwd" type="password">
+                          </div>
+                      </div>
+                          <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-2">
+                                  <button type="submit" class="btn btn-primary col-sm-offset-2">修改密码<tton>
+                              </div>
+                              <div class="col-sm-4">
+                                  <button type="reset" class="btn btn-default">重置<tton>
+                              </div>
+                          </div>
+                      </form>
+                     
+                  </div>
+                </div>
+                <div class="panel panel-primary public_h" id="nine">
+                  <div class="panel-heading">
+                      <span class="h3">修改用户信息</span>
+                  </div>
+                  <div class="panel-body right1" text-center>
+                      <form class="form-horizontal edit" role="form">
+                          <div class="form-group has-feedback">
+                              <label class="col-sm-2 control-label">用户实名:</label>
+                              <div class="col-sm-10">
+                                  <input class="form-control" name="chinaName" type="">
+                                  <input type="hidden" value="<%- id  %>" name="id">
+                              </div>
+                          </div>
+                          <div class="form-group has-feedback">
+                            <label class="col-sm-2 control-label">昵称:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="" name="nickname">
+                            </div>
+                        </div>
+                       
+                          <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-2">
+                                  <button type="submit" class="btn btn-primary col-sm-offset-2">修改管理员数据<tton>
+                              </div>
+                              <div class="col-sm-4">
+                                  <button type="reset" class="btn btn-default">重置<tton>
+                              </div>
+                          </div>
+                      </form>
+                     
+                  </div>
+                </div>
+            </div>    
+            </div>
+        </div>   
+    </main>
+    <footer class="navbar-fixed-bottom text-center" style="background-color: #7e0001;">
+        <a href="##" style="color: #fff;">福建师范大学</a>
+    </footer>
+</body>
+<script src="/js/agent.js"></script>
+<script src="/js/jquery-2.1.3.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script>
+    
+
+    //const不允许修改，不容易出错
+    //添加文件
+    // let oInsert=document.getElementById('one');
+    // let oFormOne=oInsert.querySelector('form');
+    // oFormOne.onsubmit=function(){
+    //     let data=new FormData(this);
+    //     $.ajax({
+    //         url:'/admin/insert',
+    //         type:"post",
+    //         data,
+    //         dataType:"json",
+    //         cache:false,
+    //         contentType:false,
+    //         processData:false,
+    //         success:function(result) {
+    //             console.log(result)
+    //         },
+    //         error:function() {},
+    //     });
+    //     return false;
+    // };
+    //添加通知
+    let oDivTwo=document.getElementById('two');
+    let oFormTwo=oDivTwo.querySelector('form');
+    let oTbodyOne=oDivTwo.querySelector('table tbody');
+    oFormTwo.onsubmit=function(){
+        $.post('/admin/addNotice',$(this).serialize(),function(result){
+            let tr=`<tr>
+                        <td style="color:black;border-bottom:1px solid red;">${result.title}</td>
+                        <td>${result.source}</td>
+                    </tr>`
+            oTbodyOne.innerHTML=tr+oTbodyOne.innerHTML;
+        },'json')
+        return false;
+        
+    }
+    //添加文章
+    const oDivThree=document.getElementById('three');
+    const oFormThreeImg=oDivThree.querySelector('form.image');
+    const oFormThreeHtml=oDivThree.querySelector('form.html');
+    const oTextarea=oFormThreeHtml.querySelector('textarea');
+    const oTbodyTwo=oDivThree.querySelector('table tbody');
+
+    oFormThreeImg.onsubmit=function(){
+        console.log('dsdsd')
+        let data=new FormData(this);
+        $.ajax({
+            url:"/admin/addImg",
+            type:"post",
+            data,
+            dataType:"json",
+            cache:false,
+            contentType:false,
+            processData:false,
+            success:function(imageName){
+                oTextarea.value+=`<img src='/newImage/${imageName}' alt=''/><p></p>`;
+                
+            },
+            error:function(){
+                alert("操作失败");
+            },
+        });
+        return false;
+    }
+    oFormThreeHtml.onsubmit=function(e){
+        //getJSON只能提交文本信息，提交不了二进制数据 要使用标准格式才可以 简化版不可以（目前注释）
+        // $.getJSON("/admin/addNew",$(this).serialize(),function(rs){
+        //     let tr = `<tr>
+        //           <td>${rs.title}</td>
+        //           <td>${rs.source}</td>
+        //         </tr>`;
+        // oTbodyTwo.innerHTML = tr + oTbodyTwo.innerHTML;
+        // });
+        let data=new FormData(this);
+        $.ajax({
+            url:"/admin/addNew",
+            type:"post",
+            data,
+            dataType:"json",
+            cache:false,
+            contentType:false,
+            processData:false,
+            success:function(rs){
+                let tr = `<tr>
+                  <td>${rs.title}</td>
+                  <td>${rs.source}</td>
+                </tr>`;  
+                oTbodyTwo.innerHTML = tr + oTbodyTwo.innerHTML;              
+            },
+            error:function(){
+                alert("操作失败");
+            },
+        });
+        return false; 
+    };
+    //添加热点聚焦
+    const oDivFour=document.getElementById('four');
+    const oFormFour=oDivFour.querySelector('form');
+    const oTbodyThree=oDivFour.querySelector('table tbody');
+    oFormFour.onsubmit=function(e){
+        let data=new FormData(this);
+        $.ajax({
+            url:"/admin/addNewHot",
+            type:"post",
+            data,
+            dataType:"json",
+            cache:false,
+            contentType:false,
+            processData:false,
+            success:function(rs){
+                let tr = `<tr>
+                  <td>${rs.title}</td>
+                  <td>${rs.source}</td>
+                </tr>`;  
+                oTbodyThree.innerHTML = tr + oTbodyThree.innerHTML;              
+            },
+            error:function(){
+                alert("操作失败");
+            },
+        });
+        return false; 
+    };
+    //添加轮播图
+    const oDivFive=document.getElementById('five');
+    const oFormFive=oDivFive.querySelector('form');
+    const oTbodyFour=oDivFive.querySelector('table tbody');
+    oFormFive.onsubmit=function(e){
+        let data=new FormData(this);
+        $.ajax({
+            url:"/admin/addCarousel",
+            type:"post",
+            data,
+            dataType:"json",
+            cache:false,
+            contentType:false,
+            processData:false,
+            success:function(rs){
+                let tr = `<tr>
+                  <td>${rs.title}</td>
+                  <td>${rs.source}</td>
+                </tr>`;  
+                oTbodyFour.innerHTML = tr + oTbodyFour.innerHTML;              
+            },
+            error:function(){
+                alert("操作失败");
+            },
+        });
+        return false; 
+    };
+    //删除轮播图
+    const oDivSix=document.getElementById('six');
+    const oTbodyFive=document.getElementById('delCar');
+    const oSixUl=document.getElementById('sixUl');
+    let pageNum=0;
+    let curPage=0;
+    function delCar(){
+        createTrs()
+        subPage() 
+    }
+    function createTrs(){
+      $.getJSON('/admin/getCarousel?curPage='+curPage,function(arr){
+            let str="";
+            arr.forEach((el)=>{
+                str+=`
+                <tr>
+                    <td>${el.title}</td>
+                    <td>${el.source}</td>
+                    <td>${el.date}</td>
+                    <td><button data-id='${el.id}'>删除</button></td>
+                </tr>
+                `;
+            });
+            oTbodyFive.innerHTML=str;
+        });
+    }
+    function subPage(){
+        $.getJSON('/admin/getCarNum',function(num){
+            pageNum=Math.ceil(num/4);
+            if(curPage>pageNum-1){
+              curPage--;
+              createTrs()
+            }
+            let str=`<li data-id='prev'><a href="##">&laquo;上一页</a></li>`;
+            for(let i=0;i<pageNum;i++){
+                if(i===curPage)
+                str+=`<li class="active" data-id='${i}'><a href="##">${i+1}</a></li>`;
+                else
+                str+=`<li data-id='${i}'><a href="##">${i+1}</a></li>`;
+            }
+            str+=`<li data-id='next'><a href="##">下一页&raquo;</a></li>`;
+            oSixUl.innerHTML=str;
+        });
+    }
+
+    agent1('sixUl','click','li',function(){
+        //===是完全相等 值和类型都相等 ==只要值相同
+        let btnIndex=this.getAttribute('data-id');
+        if(curPage==btnIndex) return;
+        if(curPage===0 && btnIndex==='prev') return;
+        if(curPage===pageNum-1 && btnIndex==='next') return;
+        if( btnIndex==='prev'){
+            curPage=curPage>0?--curPage:0;
+        }
+        else if(btnIndex==='next'){
+            curPage=curPage<pageNum-1?++curPage:curPage;
+        }
+        else{
+            curPage=btnIndex-0;
+        };
+        delCar();
+    })
+    agent1('delCar','click','button',function(){
+        let id=this.getAttribute('data-id');
+        if (confirm('你真的要删除吗？')){
+            $.getJSON('/admin/delCar?id='+id,function(rs){
+                if(rs){
+                    delCar();
+                }
+            })
+        }
+    })
+    //修改轮播图数据
+    const oDivSeven=document.getElementById('seven');
+    const oFormSeven1=oDivSeven.querySelector('form.title');
+    const oKeyword=oFormSeven1.querySelector('input.keyword');
+    const oFormSeven2=oDivSeven.querySelector('form.edit');
+
+    const oTitleSix=oFormSeven2.querySelector('input.title')
+    const oSelectSix=oFormSeven2.querySelector('select.select')
+    const oContentSix=oFormSeven2.querySelector('textarea.content')
+    const oIdSix=oFormSeven2.querySelector('input.id')
+  
+    const oTbodySix=document.getElementById('ChangeCar');
+
+    oFormSeven1.onsubmit=function(){
+      let str='';
+      $.getJSON('/admin/findTitle?keyword='+oKeyword.value.trim(),
+      function(arr){
+        if(arr.length===0)return;
+        arr.forEach((el)=>{
+          let date=new Date(el.updatedAt).toLocaleDateString()
+          str+=`
+                <tr>
+                    <td>${el.title}</td>
+                    <td>${el.source}</td>
+                    <td>${date}</td>
+                    <td><button data-id='${el.id}'>修改</button></td>
+                </tr>
+                `;
+              })
+        oTbodySix.innerHTML=str;
+      });
+      return false;
+    }
+    agent1("ChangeCar","click","button",function(){
+      const id=this.getAttribute('data-id');
+      $.getJSON('/admin/findCarOne?id='+id,function(obj){
+        oIdSix.value=obj.id;
+        oTitleSix.value=obj.title;
+        oSelectSix.value=obj.source;
+        oContentSix.value=obj.content;
+      })
+    });
+    oFormSeven2.onsubmit=function(){
+      const data=$(this).serialize()
+      $.post('/admin/editCar',data,function(rs){
+        if(rs)alert('update success!');
+        else alert('update failed!')
+      },'json')
+      return false;
+    }
+    //注销
+    const oLogout=document.getElementById('logout')
+    oLogout.onclick=function(){
+      $.getJSON('/admin/logout',function(rs){
+        if(rs){
+          window.location='/admin/login'
+        }
+      })
+    }
+    //修改密码
+    const oEight=document.getElementById('eight');
+    const oFormEight=oEight.querySelector('form');
+    const oNewPwd=oFormEight.querySelector('input.newPwd');
+    const oReNewPwd=oFormEight.querySelector('input.reNewPwd');
+    oFormEight.onsubmit=function(){
+      if(oNewPwd.value!==oReNewPwd.value){
+        alert('两次密码不一致！')
+      }
+      else{
+        const data=$(this).serialize()
+        $.post('/admin/changePwd',data,function(rs){
+          if(rs){
+            alert('密码已修改！')
+          }
+          else{
+            alert('原密码不对! ')
+          }
+        },'json')
+      }
+      return false;
+    }
+    //修改管理员信息
+    const oNine=document.getElementById('nine');
+    const oFormNine=oNine.querySelector('form');
+
+    oFormNine.onsubmit=function(){
+      const data=$(this).serialize()
+      $.getJSON('/admin/changeUserInfo',data,function(rs){
+        if(rs){
+          alert('信息修改成功！')
+          console.log(rs)
+        }
+      })
+      return false;
+    }
+</script>
+</html>

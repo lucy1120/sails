@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <style>
+        body{
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                用户注册
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" id="form1">
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">账号：</label>
+                        <div class="col-sm-9">
+                            <input type="" 
+                            class="form-control" 
+                            required pattern="\w{3,6}"
+                            name="account"
+                            placeholder="请输入您的的账号">
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="col-sm-2 control-label">姓名：</label>
+                        <div class="col-sm-9">
+                            <input type="" 
+                            class="form-control"  
+                            name="chinaName" 
+                            required pattern="\S{2,4}"
+                            placeholder="请输入您的的姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label ">密码：</label>
+                        <div class="col-sm-9">
+                            <input type="password" 
+                            class="form-control p1" 
+                            name="password"
+                            required pattern="\w{3,6}"
+                            placeholder="请输入您的密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">确认密码：</label>
+                        <div class="col-sm-9">
+                            <input type="password" 
+                            class="form-control p2" 
+                            required pattern="\w{3,6}"
+                            placeholder="请再次输入您的密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">昵称：</label>
+                        <div class="col-sm-9">
+                            <input type="" 
+                            class="form-control"
+                            name="nickname"
+                            required pattern="\S{2,6}"
+                            placeholder="请输入您的昵称">
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button type="submit" class="btn btn-default">注册</button>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+                        <div class="col-sm-2"> 
+                            <a href="/admin/login">返回登录</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/js/jquery-2.1.3.js"></script>
+<script>
+    const oForm=document.getElementById('form1');
+    const  oP1=oForm.querySelector('input.p1');
+    const  oP2=oForm.querySelector('input.p2');
+    oForm.onsubmit=function(){
+        if(oP1.value!==oP2.value){
+            alert('两次密码不一致')
+        }
+        let data=$(this).serialize();
+        $.post('/admin/writeInfo',data,function(rs){
+            if(rs){
+                window.location="/admin/login";
+            }
+            else{
+                alert('账号不唯一,请重试')
+            }
+        },'json')
+        return false;
+    }
+</script>
+</html>

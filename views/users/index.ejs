@@ -1,0 +1,345 @@
+<link rel="stylesheet" href="/less/index.css">
+
+<main>
+    <!--slider：滚动之物，ride：穿越等，carousel：旋转木马，interval：时间間隔,indicators:指示-->
+    <div class="container-fluid" style="padding: 0;">
+        <div id="slidershow" class="carousel slide lcj-slide" data-ride="carousel">
+            <!-- 设置图片轮播的顺序 -->
+            <ol class="carousel-indicators" style="padding-left: 700px;">
+                <% let str3='' ; newThree.forEach((el,i)=>{
+                    if(i){
+                    str3+=`<li data-target="#slidershow" data-slide-to="${i}"></li>`
+                    }else{
+                    str3+=`<li data-target="#slidershow" data-slide-to="0" class="active"></li>
+                    `
+                    }
+                    })
+                    %>
+                    <%- str3 %>
+            </ol>
+            <!-- 设置轮播图片,须保证所有图片的宽高保持一致 -->
+            <div class="carousel-inner" style="height:500px;">
+                <% let str2='' ; newThree.forEach((el,i)=>{
+                    if(i==0){
+                    str2+=`
+                    <div class="item active">
+                        <a href="/users/carDetail?id=${el.id}"><img src="/imgCarousel/${el.imgSrc}" alt=""></a>
+                        <div class="carousel-caption">
+                        </div>
+                        <h3>${el.title}</h3>
+                    </div>
+                    `
+                    }
+                    else{
+                    str2+=`
+                    <div class="item">
+                        <a href="/users/carDetail?id=${el.id}"><img src="/imgCarousel/${el.imgSrc}" alt=""></a>
+                        <div class="carousel-caption">
+                        </div>
+                        <h3>${el.title}</h3>
+                    </div>
+                    `
+                    }
+                    })
+                    %>
+                    <!-- 渲染 -->
+                    <%- str2 %>
+
+            </div>
+            <a class="left carousel-control" href="##" role="button">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="##" role="button">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary" style="border: 1px solid #ccc;border-radius: 0">
+                    <div class="panel-heading" style="background-color: #eae4da;border: none;color: #7e0001;">
+                        <h3 class="panel-title" style="font-size: 15px;">师大要闻
+                            <a href="/users/list" class="pull-right"
+                                style="font-size:12px;color:black;margin-top: 9px;">更多></a>
+                        </h3>
+                    </div>
+                    <div class="stm1">
+                        <h5 style="line-height:1.5;padding: 0 4px;" class="text-center">
+                            <%- newOne.title %>
+                                </h4>
+                                <img src="/newSmallImg/<%- newOne.smallSrc %>" alt="" width="100%" class="img-rounded"
+                                    style="border-radius:0;" />
+                                <%- newOne.para%>
+                                <a href="/users/detail?id=<%- newOne.id %>" class="pull-right" style="font-size:12px;margin-top:-20px;color: #7e0001;">点击进入</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="border-top: 2px solid #7e0001">
+                <div class="">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size: 20px;"> <small></small>
+                            <a href="/users/isNotice" class="pull-right"
+                                style="font-size:14px;color:rgb(114, 114, 114);margin-top: 9px;">更多>></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body stm3" id="notice" style="color: black;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="" >
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size: 20px;">教学科研 
+                            <a href="/users/newHotList" class="pull-right"
+                                style="font-size:12px;color:#ccc;margin-top: 9px;">更多>></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body stm2" style="border-top: 2px solid #7e0001">
+                        <!-- 全局变量要注意重名问题 -->
+                        <% let str1='' ; newThree.forEach(el=>{
+                            str1+=`
+                            <a href="/users/hotDetail?id=${el.id}" style="color: black;">
+                                <i class=""></i>
+                                ${el.title}
+                            </a>`
+                            })
+                            %>
+                            <%- str1 %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="" >
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size: 20px;">校园事宜 
+                            <a href="/users/newHotList" class="pull-right"
+                                style="font-size:12px;color:#ccc;margin-top: 9px;">更多>></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body stm2" style="border-top: 2px solid #7e0001">
+                       
+                            <a href="" style="color: black;">福建师范大学关于“一种利用CTAB提取土壤微生物基因组DNA的方法” 转让的公示
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">福建师范大学关于“一种利用酒糟酿制红曲香醋的制备方法” 转让的公示
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">福建师范大学关于“水溶性线粒体靶向乙氧基溴丙基咪唑轴向取代硅酞菁及其制备方法和应用 ”转让的公示
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">关于2022届学生毕业典礼活动期间校园交通管理的通告
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">关于举行校院两级党委理论学习中心组（扩大）学习会暨中层干部学习贯彻党的十九届六中全会精神专题研讨班辅导讲座的通知
+                                <i class=""></i>
+                            </a>
+                           
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size: 20px;">文化师大 
+                            <a href="##" class="pull-right" style="font-size:12px;color:#ccc;margin-top: 9px;">更多>></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body"style="padding:15px 0 27px;border-top: 2px solid #7e0001;">
+                        <div id="sswl" class="carousel slide lcj-slide" data-ride="carousel">
+                            <!-- 设置图片轮播的顺序 -->
+                            <ol class="carousel-indicators stm4">
+                                <!-- <li data-target="#sswl" data-slide-to="0" class="active"></li>
+                                <li data-target="#sswl" data-slide-to="1"></li>
+                                <li data-target="#sswl" data-slide-to="2"></li> -->
+                            </ol>
+                            <!-- 设置轮播图片,须保证所有图片的宽高保持一致 -->
+                            <div class="carousel-inner" style="height: 200px;">
+                                <div class="item active">
+                                    <a href="##"><img src="/images/sf1.png" alt=""></a>
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <a href="##"><img src="/images/sf2.png" alt=""></a>
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <a href="##"><img src="/images/sf3.png" alt=""></a>
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                
+                            </div>
+                            <a class="left carousel-control" href="##" role="button">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="##" role="button">
+                                <i class="glyphicon glyphicon-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="" >
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size: 20px;">学院动态 
+                            <a href="/users/newHotList" class="pull-right"
+                                style="font-size:12px;color:#ccc;margin-top: 9px;">更多>></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body stm2" style="border-top: 2px solid #7e0001">
+                       
+                            <a href="" style="color: black;">传播举行福建师范大学演播大厅揭牌仪式
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">体育科学学院党政领导深入学生宿舍走访慰问
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">马克思主义学院隆重举行2022届学生毕业典礼
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">文学院举办师范生教育实习汇报会
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">最高人民法院向我校发来感谢信
+                                <i class=""></i>
+                            </a>
+                           
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="" >
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size: 20px;">部处动态 
+                            <a href="/users/newHotList" class="pull-right"
+                                style="font-size:12px;color:#ccc;margin-top: 9px;">更多>></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body stm2" style="border-top: 2px solid #7e0001">
+                       
+                            <a href="" style="color: black;">校2022年教工扑克牌升级（80分）团体比赛落幕
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">我校2022年上半年全国大学英语四六级考试顺利结束
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">校团委举办第二届红色经典诵读会
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">机关党委举办机关干部素质能力提升专题讲座
+                                <i class=""></i>
+                            </a>
+                            <a href="" style="color: black;">我校举办2023年研究生招生政策宣讲会
+                                <i class=""></i>
+                            </a>
+                           
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-size: 20px;">影像师大 
+                            <a href="##" class="pull-right" style="font-size:12px;color:#ccc;margin-top: 9px;">更多>></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body"style="padding:15px 0 27px;border-top: 2px solid #7e0001;">
+                        <div id="sswl" class="carousel slide lcj-slide" data-ride="carousel">
+                            <!-- 设置轮播图片,须保证所有图片的宽高保持一致 -->
+                            <video width="360" height="240" controls>
+                                <source src="/images/fc7ab2b8-b576-4414-af06-427ec2f2a4fc.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row stm6" style="margin:50px 0;">
+            <div class="col-md-2" class="left" > 
+                    <img src="/images/img1.png" alt="">
+            </div>
+            <div class="right" style="border-right:1px splid #ccc;">
+                <div class="col-md-1">
+                    <img src="/images/img2.png" alt="">
+                    <p>身份认证</p>
+            </div>
+            <div class="col-md-1">
+                    <img src="/images/img3.png" alt="">
+                    <p>会议周表</p>
+            </div>
+            <div class="col-md-1">
+                    <img src="/images/img4.png" alt="">
+                    <p>OA系统</p>
+            </div>
+            <div class="col-md-1">
+                    <img src="/images/img5.png" alt="">
+                    <p>后勤服务</p>
+            </div>
+            <div class="col-md-1">
+                    <img src="/images/img6.png" alt="">
+                    <p>网络服务</p>
+            </div>
+            <div class="col-md-1">
+                    <img src="/images/img7.png" alt="">
+                    <p>图书馆</p>
+            </div>
+            <div class="col-md-1">
+                    <img src="/images/img8.png" alt="">
+                    <p>邮件系统</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    $(function () {
+        $("#slidershow").carousel({
+            interval: 2500
+        });
+        $("#slidershow a.left").click(function () {
+            $(".carousel").carousel("prev");
+        });
+        $("#slidershow a.right").click(function () {
+            $(".carousel").carousel("next");
+        })
+        $("#sswl").carousel({
+            interval: 1500
+        });
+        $("#sswl a.left").click(function () {
+            $(".carousel").carousel("prev");
+        });
+        $("#sswl a.right").click(function () {
+            $(".carousel").carousel("next");
+        })
+    })
+    let oNotice = document.getElementById('notice');
+    $.getJSON('/users/getNotice', function (arr) {
+        let str = '';
+        arr.forEach(el => {
+            str += `<section style="border-bottom:1px dashed #ccc">
+                        <a href="/users/detailNotice?id=${el.id}" style="color:black;">
+                            ${el.title}
+                        </a>
+                        <span style="width: 82px;
+                        height: 30px;
+                        font-size: 14px;
+                        font-family: 'Candara';
+                        line-height: 30px;
+                        color: #9d0301;
+                        text-align: center;
+                        font-weight: bold;
+                        top: 18px;">${el.date}</span>
+                   </section>`
+        });
+        oNotice.innerHTML = str;
+    })
+</script>

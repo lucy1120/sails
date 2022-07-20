@@ -1,0 +1,55 @@
+
+
+<link rel="stylesheet" href="/less/detail.css">
+
+
+<body>
+    
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel panel-info detail1">
+                        <div class="panel-heading" style="background-color: #eae4da;border: none;color: #7e0001;">
+                            <h3 class="panel-title">模块天地</h3>
+                        </div>
+                        <div class="panel-body" >
+                            <ul class="list-unstyled" >
+                                <li class="active"><a href="/users/list" style="color: black;">师大要闻</a></li>
+                                <li>
+                                    <a href="/users/index" style="color: black;">首页内容</a>
+                                </li>
+                                <li><a href="##" style="color: black;">校园事宜</a></li>
+                                <li><a href="##" style="color: black;">文化师大</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">热点推荐</h3>
+                          <ol class="breadcrumb pull-right" style="background-color: transparent;margin-top: -20px;">
+                            <!-- pull-right用在bootstrap里面 -->
+                            <li>当前位置</li>
+                            <li><a href="/users/index" style="color: black;">首页</a></li>
+                            <li><a href="/users/list" style="color: black;">师大要闻列表页</a></li>
+                            <li class="active" style="color: #7e0001;">师大要闻详情页</li>
+                        </ol>
+                        </div>
+                        <div class="panel-body detail3">
+                            <h3><%- title %></h3>
+                            <p class="text-center">发布时间：<%- new Date(updatedAt).toLocaleDateString() %>浏览：686次 来源：基建处 冯宇</p>
+                            <%- content %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="/less/list.css">
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-info list1">
+                    <div class="panel-heading" style="background-color: #eae4da;border: none;color: #7e0001;">
+                        <h3 class="panel-title">模块天地</h3>
+                    </div>
+                    <div class="panel-body" >
+                        <ul class="list-unstyled" >
+                            <li class="active"><a href="/users/list" style="color: black;">师大要闻</a></li>
+                            <li>
+                                <a href="/users/index" style="color: black;">首页内容</a>
+                            </li>
+                            <li><a href="##" style="color: black;">校园事宜</a></li>
+                            <li><a href="##" style="color: black;">文化师大</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="">
+                    <div class="panel-heading">
+                            <ol class="breadcrumb pull-right" style="background-color: transparent;margin-top: -20px;">
+                              <!-- pull-right用在bootstrap里面 -->
+                              <li>当前位置</li>
+                              <li><a href="/users/index" style="color: black;">首页</a></li>
+                              <li class="active" style="color: #7e0001;">搜索页</li>
+                            </ol>
+                    </div>
+                    <div class="panel-body" id="listbody">
+                        <style>
+                            p.pFormat{
+                                display: flex;
+                                justify-content: space-between;
+                                font-size: 15px;
+                                line-height: 2;
+                            }
+                        </style>
+                        <div class="listData">
+
+                        </div>
+                        <ul class="pagination pagination-lg pull-right" id="listPage">
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/js/agent.js"></script>
+<script>
+    const oDiv = document.getElementById('listbody');
+    const oDivData = oDiv.querySelector('div.listData');
+    const oUl2 = oDiv.querySelector('ul.pagination');
+    let pageNum = 0;
+    let curPage = 0;
+    let arr=[];
+    $.getJSON('/users/getSearch',function(rs){
+        arr=rs;
+        records=arr.length;
+        pageNum=Math.ceil(records/6);
+        showData()
+    });
+    function showData() {
+        let arr1=[]
+        let start=curPage*6;
+        let end=(curPage===pageNum-1)?records:start+6;
+        for(let i=curPage*6;i<end;i++){
+            arr1.push(arr[i])
+        }
+        let str = '<p></p>';
+            arr1.forEach(el => {
+                str += `
+                    <p class="pFormat">
+                        <a href="/users/${el.detailName}?id=${el.id}">
+                            <b style="color:black;">${el.title}[${el.source}]</b> 
+                        </a>
+                        <span>${el.date}</span>
+                    </p>`
+                    oDivData.innerHTML=str;
+            })
+        subPage();
+    }
+    function subPage(){
+        let str=`<li data-id="prev"><a href="#" style="color:black">&laquo;上一页</a></li>`;
+       
+            for(let i=0;i<pageNum;i++){
+                if(i===curPage){
+                    str+=`<li data-id=${i} class="active"><a href="#" style="background-color:#7e0001;border:none;">${i+1}</a></li>`;
+                }
+                else{
+                    str+=`<li data-id=${i}><a href="#" style="color:black;">${i+1}</a></li>`;
+
+                }
+            }
+            str+=`<li data-id='next'><a href="#" style="color:black">下一页&raquo;</a></li>`
+            oUl2.innerHTML=str;
+        }
+        agent1('listPage','click','li',function(){
+            const liName=this.getAttribute('data-id');
+            if(liName==='prev'){
+                curPage=curPage>0?--curPage:0;
+            }else if(liName==='next'){
+                curPage=curPage<pageNum-1?++curPage:curPage;
+            }else{
+                curPage=liName-0
+            }
+            showData()
+        })
+</script>

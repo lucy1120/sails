@@ -1,0 +1,61 @@
+header{
+    .st1{
+        background-color: #012269;
+    }
+    .st0{
+        height: 157px;
+        background: url('../images/top_bg.jpg') no-repeat center center;
+    } 
+    .st2{
+        height: 110px;  
+        .st3{
+            line-height: 108px;
+            background: url('../images/top_icon.png') no-repeat right center;
+        }
+    }
+    .st4{
+        background-color: rgba(3,43,131,.3) !important;
+        height: 46px;
+        position: relative;
+        >div{
+            display: flex;//不加大于号的，后续所有的div都会变成flex
+            justify-content: space-between;
+            dl{
+                flex:1;//中间不会留白，每个dt hover上去后不会很窄
+                &:hover dd{
+                    display: block;
+                }
+                dt{
+                    color: white;
+                    font-size:15px;
+                    font-weight: 400;
+                    line-height: 46px;//与板块的高度相同保证文字纵向居中
+                    text-align: center;
+                    &:hover{
+                        background-color: #4197D0;
+                        cursor: pointer;
+                    }
+                }
+                dd{
+                    position: absolute;
+                    padding: 5px;
+                    line-height: 25px;
+                    display: none; 
+                    left: 0;
+                    top: 47px;
+                    width: 100%;
+                    z-index: 10;
+                    background-color: rgba(255, 255, 255, 0.8);
+                    a{
+                        display: block;
+                        line-height: 2.5;
+                        color: black;
+                    }
+                }
+            }
+        }    
+    }
+}
+footer{
+    background-color: rgb(59, 143, 240);
+}

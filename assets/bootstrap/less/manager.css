@@ -1,0 +1,59 @@
+header .st1 {
+  background-color: #012269;
+}
+header .st0 {
+  height: 157px;
+  background: url('../images/top_bg.jpg') no-repeat center center;
+}
+header .st2 {
+  height: 110px;
+}
+header .st2 .st3 {
+  line-height: 108px;
+  background: url('../images/top_icon.png') no-repeat right center;
+}
+header .st4 {
+  background-color: rgba(3, 43, 131, 0.3) !important;
+  height: 46px;
+  position: relative;
+}
+header .st4 > div {
+  display: flex;
+  justify-content: space-between;
+}
+header .st4 > div dl {
+  flex: 1;
+}
+header .st4 > div dl:hover dd {
+  display: block;
+}
+header .st4 > div dl dt {
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 46px;
+  text-align: center;
+}
+header .st4 > div dl dt:hover {
+  background-color: #4197D0;
+  cursor: pointer;
+}
+header .st4 > div dl dd {
+  position: absolute;
+  padding: 5px;
+  line-height: 25px;
+  display: none;
+  left: 0;
+  top: 47px;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+header .st4 > div dl dd a {
+  display: block;
+  line-height: 2.5;
+  color: black;
+}
+footer {
+  background-color: #3b8ff0;
+}
